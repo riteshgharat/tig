@@ -26,47 +26,10 @@
  var perUnit = document.getElementById("per-unit"); // per unit
 
  /* company database*/
- let company = [
-   {
-     "name": "Shraddha Distributors",
-     "address": "Gala No.1 Sai Vandana Building <br> Tembhode Satpati Rd, <br> City Palghar, Dis-Palghar, <br> Maharashtra, 401404 <br>State: Maharashtra,  Code: 27",
-     "gstno": "27ALJPG7898N1Z2",
-     "email": "shraddhadistributors6@gmail.com",
-     "panno": "ALJPG7898N"
-   },
-   {
-     "name": "Lupin Limited",
-     "address": "T-142 MIDC Tarapur, Via Boisar, Dis Palghar, 401506 <br> State: Maharashtra,  Code: 27",
-     "gstno": "27AAACL1069K1ZF",
-     "email": "-"
-   }
-];
+ let company = [];
 
  /* buyer database*/
- let buyer = [
-   {
-     "name": "Harman Finochem Limited",
-     "address": "Haram Finochem Limited <br>Haram-API Shendra <br>Plot Nos. A-100, A-100/1, A-100/2, D-1, MIDC Industrial Area,<br>Shendra, Aurangabad 431007.<br> State: Maharashtra,  Code: 27",
-     "gstno": "27AABCH3223J1ZS",
-     "email": "-",
-  }, {
-     "name": "Lupin Limited",
-     "address": "T-142 MIDC Tarapur, Via Boisar, Dis Palghar, 401506 <br> State: Maharashtra,  Code: 27",
-     "gstno": "27AAACL1069K1ZF",
-     "email": "-"
-  }, {
-     "name": "Prince Enterprises",
-     "address": "Palghar <br> State: Maharashtra,  Code: 27",
-     "gstno": "27AJSPP9841R1ZT",
-     "email": "-",
-  },
-   {
-     "name": "Sushila Enterprises",
-     "address": "Palghar <br> State: Maharashtra,  Code: 27",
-     "gstno": "-",
-     "email": "-",
-  }
-];
+ let buyer = [];
  //display companyies and buyers
  window.onload = function() {
    for (var i = 0; i < company.length; i++) {
