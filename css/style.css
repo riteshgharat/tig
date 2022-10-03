@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 16px;
+  background-color: #D7D7D77A;
+}
+
+nav {
+  width: 100%;
+  height: 50px;
+  background-color: #CCCCCCF2;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav h2 {
+  color: #000;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+.invoice-con {
+  width: 100%;
+  /*margin-left: 2.5%;*/
+  min-height: 100vh;
+  display: none;
+  /*scale: -2;*/
+  background-color: #fff;
+}
+
+table {
+  border-collapse: collapse;
+  width: 95%;
+  margin-left: 2.5%;
+  table-layout: auto;
+  border: 1px solid #ccc;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  /*  padding: 9px;*/
+  /*  -webkit-user-modify: read-write;
+  -moz-user-modify: read-write;
+  user-modify: read-write;*/
+}
+
+table h3 {
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.sale {
+  width: 50%;
+  text-align: left;
+}
+
+th {
+  height: 35px;
+}
+
+.main-cal td,
+.cgst td,
+.cgst th,
+.sgst td {
+  border: #fff;
+}
+
+.main-cal td,
+.cgst td,
+.cgst th,
+.sgst td,
+th,
+td {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.main-cal {
+  max-height: 1200px;
+}
+
+
+.main-cal td,
+.main-cal th {
+  max-height: 40px;
+}
+
+.main-cal .data th,
+.main-cal .inWord1 {
+  max-height: 40px;
+  font-weight: 400;
+}
+
+.gst-class td {
+  text-align: center;
+  border: none;
+}
+
+.gst-class th {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+/*invoice entry css*/
+.entry-con {
+  width: 100%;
+  display: grid;
+  /*grid-template-columns: 1fr 1fr 1fr;*/
+}
+
+.entry-con div {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 5vh;
+}
+
+.entry-con fieldset {
+  width: 90%;
+  margin: 0 5% 0 5%;
+  padding: 20px 0 20px 0;
+  border: none;
+}
+
+.entry-con fieldset legend {
+  font-weight: 700;
+}
+
+.entry-con fieldset input,
+.entry-con select,
+textarea,
+.btn {
+  width: 80%;
+  height: 35px;
+  margin: 5px;
+  padding: 0px 5px 0px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  right: 10%;
+  left: 0%;
+  outline: none;
+  cursor: pointer;
+}
+
+.entry-con textarea {
+  height: 80px;
+  max-height: 100px;
+  max-width: 80%;
+}
+
+.addNewItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.addNewItem #item-name {
+  width: 100%;
+}
+
+.btn,
+select {
+  background-color: #519DFF;
+  cursor: pointer;
+}
+
+.additembtn {
+  margin-left: 5%;
+  width: 90%;
+  margin-bottom: 50px;
+}
+
+.generate {
+  width: 90%;
+  margin-left: 5%;
+  display: none;
+}
+
+.preInv {
+  width: 120px;
+  position: absolute;
+  left: calc(100% - 180px);
+}
+
+.zoom {
+  width: 35px;
+  position: absolute;
+  left: calc(100% - 50px);
+}
+
+fieldset input:focus,
+textarea:focus,
+select:focus,
+button:active {
+  border: 2px solid #519DFF;
+  background-color: #D9DCFF;
+}
+.menu{
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.print {
+  width: 80%;
+}
+.edit{
+  width: 10%;
+}
+
+@media print {
+
+  button,
+  .btn {
+    display: none;
+  }
+}

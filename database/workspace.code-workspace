@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\js"
+		},
+		{
+			"path": "..\\library"
+		},
+		{
+			"path": "..\\css"
+		}
+	]
+}
