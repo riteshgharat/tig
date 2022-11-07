@@ -1,8 +1,45 @@
- var sellerName = document.getElementById("seller-name") //seller Name
- var sellerAddress = document.getElementById("seller-address") //seller Address
- var sellerGstId = document.getElementById("seller-gstId") //seller gst id
- var sellerPanNo = document.getElementById("seller-panNo") //seller Company panNo
- var sellerEmail = document.getElementById("seller-email") //seller Email
+// Update both buyer and seller databse
+/* company database*/
+let company = [
+ {
+  "name": "Demo Party (Seller)",
+  "address": "Update data in "Entry.js file" <br> State: "State Name...",  Code: "State code here...",
+  "gstno": "27XXXXXXXXXXXX",
+  "email": "demops@email.com",
+  "panno": "PAN No. here..."
+ },
+  //template
+  /*{
+   "name": "Demo Party (Seller)",
+   "address": "Address here... <br> State: "State Name...",  Code: "State code here...",
+   "gstno": "27XXXXXXXXXXXX",
+   "email": "demops@email.com",
+   "panno": "PAN No. here..."
+  },*/
+ ];
+ /* buyer database*/
+ let buyer = [
+   //template
+  {
+   "name": "Demo Party (Buyer)",
+   "address": "Address here... <br> State: "State Name...",  Code: "State code here...",
+   "gstno": "27XXXXXXXXXXXX",
+   "email": "demopb@email.com"
+  },
+  /*{
+   "name": "Demo Party (Buyer)",
+   "address": "Address here... <br> State: "State Name...",  Code: "State code here...",
+   "gstno": "27XXXXXXXXXXXX",
+   "email": "demopb@email.com"
+  },*/
+ ];
+    
+
+var sellerName = document.getElementById("seller-name") //seller Name
+var sellerAddress = document.getElementById("seller-address") //seller Address
+var sellerGstId = document.getElementById("seller-gstId") //seller gst id
+var sellerPanNo = document.getElementById("seller-panNo") //seller Company panNo
+var sellerEmail = document.getElementById("seller-email") //seller Email
 
  var buyerName = document.getElementById("buyer-name") //buyer Name
  var buyerAddress = document.getElementById("buyer-address") //buyer Address
@@ -24,12 +61,6 @@
  var qty = document.getElementById("item-qty"); //item qty
  var gstPercentage = document.getElementById("gst-rate"); //gst %
  var perUnit = document.getElementById("per-unit"); // per unit
-
- /* company database*/
- let company = [];
-
- /* buyer database*/
- let buyer = [];
  //display companyies and buyers
  window.onload = function() {
    for (var i = 0; i < company.length; i++) {
