@@ -1,2 +1,3 @@
-# tax-invoice-generator
- 
+# Tax-Invoice-Generator (Beta)
+* Generate GST Invoices
+* Lightweight 
