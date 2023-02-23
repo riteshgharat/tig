@@ -215,16 +215,16 @@ function updateUI() {
 
   itemsStoredData = JSON.parse(localStorage.getItem('itemsDetails'));
 
-  document.querySelector('.sDetails').innerHTML = "<h3>" + seller.name + '</h3>' + seller.address + '<br> GST No: <b>' + seller.gstno + '</b><br>Email: ' + seller.email;
-  document.querySelector('.pDetails').innerHTML = "<em>Buyer's Detail</em><h3>" + buyer.name + '</h3>' + buyer.address + '<br> GST No: <b>' + buyer.gstno + '</b><br> Email: ' + buyer.email;
+  document.querySelector('.sDetails').innerHTML = "<h3>" + removeSpecialCharacters(seller.name) + '</h3>' + removeSpecialCharacters(seller.address) + '<br> GST No: <b>' + removeSpecialCharacters(seller.gstno) + '</b><br>Email: ' + removeSpecialCharacters(seller.email);
+  document.querySelector('.pDetails').innerHTML = "<em>Buyer's Detail</em><h3>" + removeSpecialCharacters(buyer.name) + '</h3>' + removeSpecialCharacters(buyer.address) + '<br> GST No: <b>' + removeSpecialCharacters(buyer.gstno) + '</b><br> Email: ' + removeSpecialCharacters(buyer.email);
 
-  document.querySelector('.iDate').innerHTML = 'Date: <br><h4>' + ISD.invoiceDate + '</h4>';
-  document.querySelector('.iNo').innerHTML = 'Invoice No: <br><h4>' + ISD.invoiceNo + '</h4>'
-  document.querySelector('.pDate').innerHTML = 'Date: <br><h4> ' + ISD.purchaseDate + '</h4>';
-  document.querySelector('.poNo').innerHTML = 'P.O No: <br><h4> ' + ISD.purchaseNo + '</h4>';
-  document.querySelector('.chalNo').innerHTML = 'Challan No: <br><h4>' + ISD.challanNo + '</h4>'
-  document.querySelector('.chalDate').innerHTML = 'Date: <br><h4> ' + ISD.challanDate + '</h4>';
-  document.querySelector('.vehNo').innerHTML = 'Vehile No: <br><h4>' + ISD.vehicleNo.toUpperCase() + '</h4>'
+  document.querySelector('.iDate').innerHTML = 'Date: <br><h4>' + removeSpecialCharacters(ISD.invoiceDate) + '</h4>';
+  document.querySelector('.iNo').innerHTML = 'Invoice No: <br><h4>' + removeSpecialCharacters(ISD.invoiceNo) + '</h4>'
+  document.querySelector('.pDate').innerHTML = 'Date: <br><h4> ' + removeSpecialCharacters(SD.purchaseDate) + '</h4>';
+  document.querySelector('.poNo').innerHTML = 'P.O No: <br><h4> ' + removeSpecialCharacters(ISD.purchaseNo) + '</h4>';
+  document.querySelector('.chalNo').innerHTML = 'Challan No: <br><h4>' + removeSpecialCharacters(ISD.challanNo) + '</h4>'
+  document.querySelector('.chalDate').innerHTML = 'Date: <br><h4> ' + removeSpecialCharacters(ISD.challanDate) + '</h4>';
+  document.querySelector('.vehNo').innerHTML = 'Vehile No: <br><h4>' + removeSpecialCharacters(ISD.vehicleNo.toUpperCase()) + '</h4>'
 
   let mainCl = document.querySelector('.main-cal');
   let gstClass = document.querySelector('.gst-class');
@@ -249,7 +249,7 @@ function updateUI() {
 
   for (let i = 0; i < itemsStoredData.length; i++) {
     ITSD = itemsStoredData[i];
-    mainCl.innerHTML += `
+    /*mainCl.innerHTML += `
       <tr class="data">
           <td style="text-align: center">${i + 1}</td>
           <td>${ITSD.itemName.toUpperCase()} <br><i>${ITSD.itemNo}</i></td>
@@ -260,7 +260,7 @@ function updateUI() {
           <td style="text-align: center">${ITSD.perUnit}</td>
           <td style="text-align: center">${ITSD.rateQty.toFixed(2)}</td>
       </tr>`
-
+*/
     sum += ITSD.rateQty;
     gstTotal += (ITSD.rateQty * ITSD.gst / 200);
 
@@ -467,10 +467,10 @@ function updateUI() {
     }
   }
 
-  document.querySelector('.inWord1').innerHTML += 'Amount Chargeable (in words): <br> Indian Rupees ' + inWords(total.toFixed(2));
+  document.querySelector('.inWord1').innerHTML += 'Amount Chargeable (in words): <br> Indian Rupees ' + removeSpecialCharacters(inWords(total.toFixed(2)));
 
   document.querySelector('.inWord2').innerHTML = 'Tax Amount (in words): <br> Indian Rupees ' +
-    inWords((2 * gstTotal).toFixed(2));
+    removeSpecialCharacters(inWords((2 * gstTotal).toFixed(2)));
 
   footerClass.rows[1].cells[0].innerHTML = "Company's PAN : <b>" + seller.panno + '</b>';
 }
@@ -544,4 +544,8 @@ function AddItem() {
     localStorage.setItem('buyerDetail', JSON.stringify(buyerDetail));
     buyerStoredData = JSON.parse(localStorage.getItem('buyerDetail'));
   }
+}
+
+function removeSpecialCharacters(str) {
+  return str.replace(/[^\w\s]/gi, '');
 }
