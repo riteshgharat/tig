@@ -25,12 +25,127 @@ nav h2 {
   font-weight: 700;
 }
 
+.popUp,
+.printPopUp {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: #49494B82;
+  display: none;
+}
+
+.popCon .closePopUp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  position: absolute;
+  font-size: 20px;
+  top: 35px;
+  left: calc(95% - 20px);
+}
+
+.popUp .popCon,
+.printPopUp .printPopUp-con div {
+  width: 95%;
+  height: 90vh;
+  margin: 5vh 2.5%;
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popUp .popCon .card {
+  height: 70vh;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popUp .popCon .sellerData,
+.popUp .popCon .buyerData {
+  border-right: 2px dashed #000;
+}
+
+
+.printPopUp .printPopUp-con div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.printPopUp .printPopUp-con .div1 {}
+
+.printPopUp .printPopUp-con .div2 {
+  display: none;
+}
+
+.printPopUp .printPopUp-con .div2 img {
+  width: 100px;
+  color: greenyellow;
+}
+
+.printPopUp .printPopUp-con .div2 .btn {
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+}
+
+/*loading css animation*/
+.printPopUp .printPopUp-con .div1 .lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.printPopUp .printPopUp-con .div1 .lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #519DFF;
+  animation: lds-facebook 1.2s infinite cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.printPopUp .printPopUp-con .div1 .lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.printPopUp .printPopUp-con .div1 .lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.printPopUp .printPopUp-con .div1 .lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
 .invoice-con {
   width: 100%;
-  /*margin-left: 2.5%;*/
   min-height: 100vh;
   display: none;
-  /*scale: -2;*/
   background-color: #fff;
 }
 
@@ -141,7 +256,7 @@ textarea,
   width: 80%;
   height: 35px;
   margin: 5px;
-  padding: 0px 5px 0px 5px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   position: relative;
@@ -184,10 +299,15 @@ select {
   display: none;
 }
 
-.preInv {
+.preInv,
+.updateData {
   width: 120px;
   position: absolute;
   left: calc(100% - 180px);
+}
+
+.updateData {
+  left: calc(100% - 180px - 130px);
 }
 
 .zoom {
@@ -203,17 +323,28 @@ button:active {
   border: 2px solid #519DFF;
   background-color: #D9DCFF;
 }
-.menu{
+
+.menu {
   width: 100%;
   display: none;
   align-items: center;
   justify-content: space-evenly;
 }
+
 .print {
-  width: 80%;
+  width: 70%;
 }
-.edit{
+
+.edit,
+.close {
   width: 10%;
+}
+.close{
+  background: #FF3232
+}
+
+#install-btn {
+  display: none;
 }
 
 @media print {
@@ -221,5 +352,96 @@ button:active {
   button,
   .btn {
     display: none;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  nav h2 {
+    visibility: hidden;
+  }
+
+  nav h2:before {
+    visibility: visible;
+    content: "TIG";
+  }
+
+  .popUp {
+    position: relative;
+    /* max-height: 891px;*/
+  }
+
+  .popCon .closePopUp {
+    top: 15px;
+    left: calc(95% - 40px);
+  }
+
+  .popUp .popCon {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .popUp .popCon .card {
+    width: 90%;
+    height: auto;
+    padding: 40px 0;
+  }
+
+  .popUp .popCon .sellerData,
+  .popUp .popCon .buyerData {
+    border-right: 0px;
+    border-bottom: 2px dashed #000;
+  }
+
+  .preInv,
+  .updateData {
+    width: 120px;
+    margin: 5px;
+  }
+
+  .entry-con div {
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+
+  .entry-con fieldset {
+    width: 90%;
+    margin: 0;
+    padding: 5%;
+  }
+
+  .entry-con fieldset input,
+  .entry-con select,
+  .entry-con textarea,
+  .entry-con fieldset .btn {
+    min-width: 95%;
+  }
+
+  .addNewItem #item-name {
+    width: 95%;
+  }
+
+  .additembtn {
+    max-width: 90%;
+  }
+
+  #inputDis {
+    zoom: 0.6;
+  }
+
+  .invoice-con {
+    zoom: 0.5;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .print {
+    width: 50%;
+  }
+
+  .edit,
+  .close {
+    width: 15%;
   }
 }

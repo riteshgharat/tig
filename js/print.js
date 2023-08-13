@@ -1,10 +1,14 @@
+const printPopUp = document.querySelector('.printPopUp');
+const printPopUpDiv1 = document.querySelector('.printPopUp .printPopUp-con .div1');
+const printPopUpDiv2 = document.querySelector('.printPopUp .printPopUp-con .div2');
+
 // generating date formate for file
-function getDt(){
+function getDt() {
   var date = new Date();
-  var year=date.getFullYear();
+  var year = date.getFullYear();
   var month = date.getMonth();
 
-  if(month <= 3){
+  if (month <= 3) {
     return `${year-1}-${year}`;
   }
   else {
@@ -13,7 +17,7 @@ function getDt(){
 }
 
 //Printing Setting
-document.querySelector('.print').addEventListener('click', () => {
+document.querySelector('.download').addEventListener('click', () => {
   var element = document.querySelector('.invoice-con');
 
   ISD = JSON.parse(localStorage.getItem('invoiceDetail'));
@@ -26,17 +30,29 @@ document.querySelector('.print').addEventListener('click', () => {
     jsPDF: { unit: 'in', format: 'A3', orientation: 'portrait' }
   };
 
-  alert("Generating PDF...");
+  printPopUp.style.display = 'block';
+  invoiceCon.style.zoom = '1';
   //New Promise-based usage:
-  html2pdf().from(element).set(opt).save();
+  html2pdf().from(element).set(opt).save().then(
+    (onFulfilled) => {
+      console.log('PDF downloading...');
+      printPopUpDiv1.style.display = 'none';
+      printPopUpDiv2.style.display = 'flex';
+    }
+  ).catch(onrejected => console.log('PDF download failed!')).error(msg => alert(`Something went wrong!\n${msg}`));
+
   // Old monolithic-style usage:
   //html2pdf(element, opt);
 })
 
-// to edit content of invoice
-
-document.querySelector(".edit").addEventListener("click", () =>{
+// to edit content of invoice3
+document.querySelector(".edit").addEventListener("click", () => {
   document.querySelectorAll("td").forEach(td => td.contentEditable = true);
   document.querySelectorAll("th").forEach(th => th.contentEditable = true);
   alert("Invoice is now Editable...");
-})
+});
+
+// to print invoice directly
+document.querySelector('.print').addEventListener('click', () => {
+  window.print();
+});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Offline</title>
+  <style>
+    body,
+    .offline-con {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .btn {
+      max-width: 25%;
+    }
+
+    img {
+      width: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="offline-con">
+    <img src="/images/offline.png" alt="offline">
+    <h1>No Internet</h1>
+    <button onclick="rel()" class="btn">Reload</button>
+  </div>
+  <script>
+    //window.onload = rel();
+
+    function rel() {
+      if (window.navigator.onLine) {
+        window.location = location.host + '/index.html';
+      }
+      else {
+        console.log('No Internet!')
+      }
+    }
+  </script>
+</body>
+
+</html>

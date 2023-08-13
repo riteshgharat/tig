@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Generator</title>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <!--manifest json-->
+  <link rel="manifest" href="manifest.json">
+  <link rel="shortcut icon" type="image/png" href="/images/icon-48x48.png">
+</head>
+
+<body>
+  <!--install btn-->
+  <button type="submit" id="install-btn">Install</button>
+  <!--invoice menu-->
+  <div class="menu">
+    <button class="btn download">Download Invoice</button>
+    <button class="btn print">Print Invoice</button>
+    <button class="btn newInv" onclick="let c = confirm('Are you sure want to create new invoice?'); if(c){window.open(location.href,'_blank')};">New Inv</button>
+    <button class="btn edit">Edit</button>
+    <button class="btn close" onclick="let c = confirm('Are you sure want to close window?'); if(c){location.reload()};">Close</button><br>
+  </div>
+  <div class="printPopUp">
+    <div class="printPopUp-con">
+      <div class="div1">
+        <div class="lds-facebook">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div><br>
+        <h2>Generating PDF...</h2>
+      </div>
+      <div class="div2">
+        <img src="./images/circle-check-solid.svg" alt="tick"><br>
+        <h2>PDF Downloaded Successfully!</h2><br>
+        <button type="submit" class="btn" onclick="document.querySelector('.printPopUp').style.display = 'none';">Ok</button>
+      </div>
+    </div>
+  </div>
+  <div class="invoice-con"></div>
+
+  <nav>
+    <h2>Invoice Generator</h2>
+    <button class="btn updateData">Update Database</button>
+    <button class="btn preInv">Previous Invoice</button>
+    <button class="btn zoom">🔳</button>
+  </nav>
+  <div class="popUp">
+    <div class="popCon">
+      <button class="btn closePopUp">x</button>
+      <div class="card sellerData">
+        <h2>Update Seller Database</h2><br>
+        <h5>Supported Formate .xcel/.xlsx</h5><br>
+        <input class="sellerData-inp" type="file"><br>
+        <a href="https://drive.google.com/uc?export=download&id=11nZU4aUGsIXIrun74LRCWMHdpw0Z3Z_s" download="file" target="_blank">Download Template</a><br>
+        <button class="btn sellerData-update" type="submit" disabled>Update</button>
+      </div>
+      <div class="card buyerData">
+        <h2>Update Buyer Database</h2><br>
+        <h5>Supported Formate .xcel/.xlsx</h5><br>
+        <input class="buyerData-inp" type="file"><br>
+        <a href="https://drive.google.com/uc?export=download&id=11lTgBhZrnJ2MJRG23PzVPqpEqwCWUBXH" download="file" target="_blank">Download Template</a><br>
+        <button class="btn buyerData-update" type="submit" disabled>Update</button>
+      </div>
+      <div class="card itemData">
+        <h2>Update Item Database</h2><br>
+        <h5>Supported Formate .xcel/.xlsx</h5><br>
+        <input class="itemData-inp" type="file"><br>
+        <a href="https://drive.google.com/uc?export=download&id=11l24YoB3BEmA7edyuTOF6_oRnCreX8Bo" download="file" target="_blank">Download Template</a><br>
+        <button class="btn itemData-update" type="submit" disabled>Update</button>
+      </div>
+    </div>
+  </div><br>
+
+  <!--form-->
+  <div class="entry-con">
+    <div>
+      <fieldset class="seller">
+        <legend>Seller's Details</legend>
+        <input type="text" id="seller-name" list="seller-add" placeholder="Company Name (Seller)" required /><br>
+        <datalist id="seller-add"></datalist>
+        <textarea type="text" id="seller-address" placeholder="Address (Seller)" required></textarea><br>
+        <input type="text" id="seller-city" placeholder="City/District (Seller)" required><br>
+        <input type="text" id="seller-gstId" placeholder="Gst No (Seller)" required /><br>
+        <input type="text" id="seller-panNo" placeholder="Company PAN No.(Seller)" required /><br>
+        <input type="email" id="seller-email" placeholder="Email (Seller)" required /><br>
+      </fieldset>
+      <fieldset class="buyer">
+        <legend>Buyer's Details</legend>
+        <input type="text" id="buyer-name" list="buyer-add" placeholder="Company Name (Buyer)" required /><br>
+        <datalist id="buyer-add"></datalist>
+        <textarea type="text" id="buyer-address" placeholder="Address (Buyer)" required></textarea><br>
+        <input type="text" id="buyer-gstId" placeholder="Gst No (Buyer)" required /><br>
+        <input type="text" id="buyer-email" placeholder="Email (Buyer)" /><br>
+      </fieldset>
+      <fieldset class="invoice">
+        <legend>Invoice Details</legend>
+        <input type="text" id="invoice-no" placeholder="Invoice Number" required /><br>
+        <input type="text" name="text" id="invoice-date" onfocus="(this.type='date')" placeholder="Invoice Date dd/mm/yyyy" required />
+        <input type="text" id="purchase-no" placeholder="Purchase No (P.O)" required required /><br>
+        <input type="text" name="date" id="purchase-date" placeholder="P.O Date dd/mm/yyyy" onfocus="(this.type='date')" required />
+        <input type="text" id="challan-no" placeholder="Challan No" required />
+        <br><input type="text" id="challan-date" placeholder="Challan Date dd/mm/yyyy" onfocus="(this.type='date')" required />
+        <input type="text" id="vehicle-no" placeholder="Vehicle No" /><br>
+      </fieldset>
+    </div>
+    <fieldset class="addNewItem">
+      <legend>Add New Item</legend>
+      <input type="text" id="item-name" list="item-add" placeholder="Item Name" required />
+      <datalist id="item-add"></datalist>
+      <div>
+        <input type="text" id="item-code" placeholder="Item Code/Description" required />
+        <input type="text" id="hsn-code" placeholder="HSN Code" required />
+        <select id="gst-rate">
+          <option value="0%">Gst 0%</option>
+          <option value="5%">Gst 5%</option>
+          <option value="12%">Gst 12%</option>
+          <option value="18%" selected>Gst 18%</option>
+          <option value="28%">Gst 28%</option>
+        </select>
+        <input type="number" id="item-rate" placeholder="Rate (per unit)" required />
+        <input type="number" id="item-qty" placeholder="Quantity" required />
+        <!--select id="per-unit">
+          <option value="EA" selected>EACH</option>
+          <option value=PAC>PACK</option>
+          <option value="LTR">LTR</option>
+          <option value="KG">KG</option>
+          <option value="MTR">MTR</option>
+        </select-->
+        <input id="per-unit" list="perUnit" placeholder="UOM">
+        <datalist id="perUnit">
+          <option value="EA" selected>
+          <option value=PAC>
+          <option value="LTR">
+          <option value="KG">
+          <option value="MTR">
+        </datalist>
+      </div>
+    </fieldset>
+
+    <!--/form-->
+    <button onclick="AddItem()" class="btn additembtn">Add New Item</button>
+    <table id="inputDis" style="max-width: 95%; opacity: 0">
+      <thead>
+        <tr>
+          <th style="width: 30%">Description of Goods</th>
+          <th style="width: 15%">HSN Code</th>
+          <th>GST</th>
+          <th>Quantity</th>
+          <th>Rate</th>
+          <th>Per</th>
+          <th style="width:15%">Amount</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <thead class="inputDisT"></thead>
+    </table><br>
+  </div>
+  <br><button id="generate" class="btn generate">Generere Invoice</button><br>
+
+  <!--print library-->
+  <script src="library/es6-promise/es6-promise.auto.min.js"></script>
+  <script src="library/jspdf-autotable/jspdf.umd.min.js"></script>
+  <script src="library/html2canvas/html2canvas.min.js"></script>
+  <script src="library/html2pdf/html2pdf.bundle.js"></script>
+
+  <!--json converter library-->
+  <script src="library/excel2json/read-excel-file.min.js"></script>
+
+  <!--javascripts-->
+  <script src="js/window.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/entry.js"></script>
+  <script src="js/invoice.js"></script>
+  <script src="js/print.js"></script>
+  <script src="js/install.js"></script>
+</body>
+
+</html>

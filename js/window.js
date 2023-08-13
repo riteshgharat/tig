@@ -3,7 +3,7 @@ window.addEventListener('beforeunload', ev => {
   ev.returnValue = 'Are you sure you want to Exit?';
 });
 
-//adding localstorage
+//adding localstorage for invoice
 var itemsDetails = [];
 var invoiceDetail;
 var sellerDetail;
@@ -27,6 +27,8 @@ var buyerStoredData = JSON.parse(localStorage.getItem('buyerDetail'));
 var ISD = JSON.parse(localStorage.getItem('invoiceDetail'));
 var itemsStoredData = JSON.parse(localStorage.getItem('itemsDetails'));
 
+
+// function for window in fullscreen
 document.querySelector('.zoom').addEventListener('click', () => {
   let elem = document.documentElement;
   if (elem.requestFullscreen) {
